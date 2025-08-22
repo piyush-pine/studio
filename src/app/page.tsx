@@ -265,12 +265,12 @@ export default function Home() {
         </p>
       </header>
 
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        <VerseOfTheDay />
-        <TempleOfTheDay temple={templeOfTheDay} />
-        <UpcomingEvents events={upcomingEvents} />
-        <MiniMap />
-        <DonationHighlights />
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="lg:col-span-2"><VerseOfTheDay /></div>
+        <div className="lg:col-span-1"><TempleOfTheDay temple={templeOfTheDay} /></div>
+        <div className="lg:col-span-3"><UpcomingEvents events={upcomingEvents} /></div>
+        <div className="lg:col-span-3"><MiniMap /></div>
+        <div className="lg:col-span-3"><DonationHighlights /></div>
       </div>
     </div>
   );
