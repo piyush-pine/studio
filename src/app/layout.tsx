@@ -31,7 +31,11 @@ export default function RootLayout({
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <AuthProvider>
-            <DonationsProvider>{children}</DonationsProvider>
+            <DonationsProvider>
+              <MainLayout>
+                {children}
+              </MainLayout>
+            </DonationsProvider>
           </AuthProvider>
           <Toaster />
         </ThemeProvider>
