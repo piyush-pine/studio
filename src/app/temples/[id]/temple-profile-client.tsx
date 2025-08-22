@@ -3,6 +3,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import type { Temple } from '@/lib/temple-data';
 import { useFavorites } from '@/hooks/use-favorites';
 import { Button } from '@/components/ui/button';
@@ -24,6 +25,7 @@ export default function TempleProfileClient({ temple }: { temple: Temple }) {
   const { user } = useAuth();
   const { favorites, addFavorite, removeFavorite } = useFavorites();
   const { toast } = useToast();
+  const router = useRouter();
 
   const isFavorite = favorites.some((fav) => fav.id === temple.id);
 
@@ -45,6 +47,18 @@ export default function TempleProfileClient({ temple }: { temple: Temple }) {
     }
   };
   
+  const handleDonateClick = () => {
+    if (!user) {
+      toast({
+        variant: 'destructive',
+        title: 'Authentication Required',
+        description: 'You must be logged in to make a donation.',
+      });
+    } else {
+      router.push(`/temples/${temple.id}/donate`);
+    }
+  };
+
   const getShareUrl = () => {
     if (typeof window !== 'undefined') {
       return window.location.href;
@@ -119,11 +133,9 @@ export default function TempleProfileClient({ temple }: { temple: Temple }) {
                 </CardHeader>
                 <CardContent>
                     <p className="text-muted-foreground leading-relaxed">{temple.longDescription}</p>
-                    <Button size="lg" className="w-full mt-6" asChild>
-                        <Link href={`/temples/${temple.id}/donate`}>
-                            <HandCoins className="mr-2 h-5 w-5" />
-                            Donate Now
-                        </Link>
+                    <Button size="lg" className="w-full mt-6" onClick={handleDonateClick}>
+                        <HandCoins className="mr-2 h-5 w-5" />
+                        Donate Now
                     </Button>
                 </CardContent>
             </Card>
