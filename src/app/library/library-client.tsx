@@ -14,8 +14,9 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import { Input } from '@/components/ui/input';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { BookOpen, Search, Sparkles, BookHeart, ScrollText, Library } from 'lucide-react';
+import { BookOpen, Search, Sparkles, BookHeart, ScrollText, Library, History } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 
 export default function LibraryClient() {
   const [randomVerse, setRandomVerse] =
@@ -85,6 +86,8 @@ export default function LibraryClient() {
                     <Skeleton className="h-6 w-2/3" />
                     <Skeleton className="h-4 w-full mt-2" />
                     <Skeleton className="h-4 w-1/3 mt-2 ml-auto" />
+                    <Separator className="my-4" />
+                    <Skeleton className="h-20 w-full" />
                   </div>
                 )}
                 {verseError && (
@@ -94,13 +97,29 @@ export default function LibraryClient() {
                   </Alert>
                 )}
                 {randomVerse && !isVerseLoading && (
-                  <blockquote className="border-l-4 border-primary pl-6 pr-4 py-4 bg-background/50 rounded-r-lg shadow-inner">
-                    <p className="text-lg italic font-serif">"{randomVerse.verse}"</p>
-                     <p className="text-muted-foreground mt-3 text-base">"{randomVerse.translation}"</p>
-                    <cite className="mt-4 block text-right font-medium text-primary">
-                      - {randomVerse.source}
-                    </cite>
-                  </blockquote>
+                  <div className="fade-in">
+                    <blockquote className="border-l-4 border-primary pl-6 pr-4 py-4 bg-background/50 rounded-r-lg shadow-inner">
+                      <p className="text-lg italic font-serif">"{randomVerse.verse}"</p>
+                      <p className="text-muted-foreground mt-3 text-base">"{randomVerse.translation}"</p>
+                      <cite className="mt-4 block text-right font-medium text-primary">
+                        - {randomVerse.source}
+                      </cite>
+                    </blockquote>
+
+                    <Accordion type="single" collapsible className="w-full mt-4">
+                      <AccordionItem value="item-1">
+                        <AccordionTrigger>
+                          <div className="flex items-center gap-2 text-base font-semibold">
+                            <History className="h-5 w-5 text-accent" />
+                            Historical & Cultural Context
+                          </div>
+                        </AccordionTrigger>
+                        <AccordionContent className="text-muted-foreground text-base px-2">
+                          {randomVerse.context}
+                        </AccordionContent>
+                      </AccordionItem>
+                    </Accordion>
+                  </div>
                 )}
               </div>
             </CardContent>
