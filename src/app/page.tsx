@@ -38,7 +38,7 @@ function VerseOfTheDay() {
   }, []);
 
   return (
-    <Card className="col-span-1 md:col-span-2">
+    <Card>
       <CardHeader>
         <CardTitle className="font-headline flex items-center gap-2">
           <Sparkles className="h-6 w-6 text-accent" />
@@ -69,7 +69,7 @@ function VerseOfTheDay() {
 
 function TempleOfTheDay({ temple }: { temple: Temple }) {
   return (
-    <Card className="overflow-hidden flex flex-col col-span-1">
+    <Card className="overflow-hidden flex flex-col">
       <CardHeader>
         <CardTitle className="font-headline">Temple of the Day</CardTitle>
         <CardDescription>{temple.name}</CardDescription>
@@ -265,12 +265,22 @@ export default function Home() {
         </p>
       </header>
 
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-        <div className="md:col-span-2"><VerseOfTheDay /></div>
-        <div className="md:col-span-1"><TempleOfTheDay temple={templeOfTheDay} /></div>
-        <div className="md:col-span-3"><UpcomingEvents events={upcomingEvents} /></div>
-        <div className="md:col-span-3"><MiniMap /></div>
-        <div className="md:col-span-3"><DonationHighlights /></div>
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="lg:col-span-2">
+            <VerseOfTheDay />
+        </div>
+        <div className="lg:col-span-1">
+            <TempleOfTheDay temple={templeOfTheDay} />
+        </div>
+        <div className="lg:col-span-3">
+            <UpcomingEvents events={upcomingEvents} />
+        </div>
+        <div className="lg:col-span-3">
+            <MiniMap />
+        </div>
+        <div className="lg:col-span-3">
+            <DonationHighlights />
+        </div>
       </div>
     </div>
   );
