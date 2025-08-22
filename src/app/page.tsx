@@ -69,7 +69,7 @@ function VerseOfTheDay() {
 
 function TempleOfTheDay({ temple }: { temple: Temple }) {
   return (
-    <Card className="overflow-hidden flex flex-col">
+    <Card className="overflow-hidden flex flex-col col-span-1">
       <CardHeader>
         <CardTitle className="font-headline">Temple of the Day</CardTitle>
         <CardDescription>{temple.name}</CardDescription>
