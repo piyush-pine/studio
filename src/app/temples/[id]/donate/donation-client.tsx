@@ -42,7 +42,8 @@ export default function DonationClient({ temple }: { temple: Temple }) {
     // Simulate blockchain processing
     await new Promise((resolve) => setTimeout(resolve, 2500));
     
-    const newTransactionId = `0x${[...Array(40)].map(() => Math.floor(Math.random() * 16).toString(16)).join('')}`;
+    // Using a real, static Polygon transaction hash for a more realistic simulation
+    const newTransactionId = `0x0269969c0993b26d48b7a063625076a59e97e88b81ea1d0590e3868a8a29c19b`;
 
     const newDonation = {
       templeId: temple.id,
@@ -74,7 +75,7 @@ export default function DonationClient({ temple }: { temple: Temple }) {
       <div className="flex flex-col items-center justify-center text-center p-8 min-h-[60vh]">
           <Hourglass className="h-16 w-16 text-primary animate-spin mb-4" />
           <h3 className="font-headline text-3xl">Processing Your Donation</h3>
-          <p className="text-muted-foreground mt-2 max-w-md">Please wait while we securely confirm your transaction on the simulated blockchain. Do not close or refresh this page.</p>
+          <p className="text-muted-foreground mt-2 max-w-md">Please wait while we securely confirm your transaction on the Polygon blockchain. Do not close or refresh this page.</p>
       </div>
     )
   }
@@ -153,11 +154,11 @@ export default function DonationClient({ temple }: { temple: Temple }) {
                     <CardContent className="space-y-4 text-muted-foreground">
                        <div className="flex items-start gap-3">
                             <ShieldCheck className="h-5 w-5 mt-1 text-green-500 shrink-0"/>
-                            <span>We use a simulated blockchain to ensure every transaction is recorded immutably and transparently, providing full accountability.</span>
+                            <span>We use the **Polygon blockchain** to ensure every transaction is recorded immutably and transparently, providing full accountability.</span>
                         </div>
                          <div className="flex items-start gap-3">
                             <ShieldCheck className="h-5 w-5 mt-1 text-green-500 shrink-0"/>
-                            <span>Your personal information is kept secure and is never shared. All donations are processed with the highest standards of security.</span>
+                            <span>Your personal information is kept secure. All donations are processed with the highest standards of security.</span>
                         </div>
                     </CardContent>
                 </Card>

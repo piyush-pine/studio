@@ -31,6 +31,8 @@ import {
   XCircle,
   MessageSquare,
   ShieldAlert,
+  ExternalLink,
+  AlertTriangle
 } from 'lucide-react';
 import Link from 'next/link';
 
@@ -130,7 +132,7 @@ function DonationOversight() {
       <CardHeader>
         <CardTitle>Donation Oversight</CardTitle>
         <CardDescription>
-          Review recent transactions and flagged donations.
+          Review recent transactions. AI flags suspicious activity.
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -145,17 +147,29 @@ function DonationOversight() {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {recentDonations.map((donation) => (
+              {recentDonations.map((donation, index) => (
                 <TableRow key={donation.id}>
-                  <TableCell className="font-mono text-xs">
-                    {donation.transactionId.substring(0, 12)}...
+                  <TableCell>
+                     <Button asChild variant="link" className="p-0 h-auto font-mono text-xs">
+                        <Link href={`https://polygonscan.com/tx/${donation.transactionId}`} target="_blank" rel="noopener noreferrer">
+                           {donation.transactionId.substring(0, 12)}...
+                           <ExternalLink className="ml-1 h-3 w-3" />
+                        </Link>
+                      </Button>
                   </TableCell>
                   <TableCell>₹{donation.amount}</TableCell>
                   <TableCell>{donation.templeName}</TableCell>
                   <TableCell>
-                    <Badge className="bg-green-500 hover:bg-green-600">
-                      <ShieldCheck className="mr-1 h-3 w-3" /> Verified
-                    </Badge>
+                    {/* Simulate AI Fraud Detection */}
+                    {index === 1 ? (
+                       <Badge variant="destructive">
+                        <AlertTriangle className="mr-1 h-3 w-3" /> AI Flagged
+                      </Badge>
+                    ) : (
+                      <Badge className="bg-green-500 hover:bg-green-600">
+                        <ShieldCheck className="mr-1 h-3 w-3" /> Verified
+                      </Badge>
+                    )}
                   </TableCell>
                 </TableRow>
               ))}

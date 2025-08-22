@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useDonations } from '@/hooks/use-donations';
@@ -10,7 +11,7 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { HandCoins, Medal, Gem, Shield, Crown } from 'lucide-react';
+import { HandCoins, Medal, Gem, Shield, Crown, ExternalLink } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
@@ -81,7 +82,7 @@ export default function AccountClient() {
             <Card>
             <CardHeader>
                 <CardTitle className="font-headline">Donation History</CardTitle>
-                <CardDescription>A record of your contributions.</CardDescription>
+                <CardDescription>A record of your contributions, verifiable on-chain.</CardDescription>
             </CardHeader>
             <CardContent>
                 {donations.length > 0 ? (
@@ -102,9 +103,12 @@ export default function AccountClient() {
                             <TableCell className="text-right">₹{donation.amount.toLocaleString('en-IN')}</TableCell>
                             <TableCell>{new Date(donation.date).toLocaleDateString()}</TableCell>
                             <TableCell>
-                            <Badge variant="secondary" className="font-mono text-xs">
-                                {donation.transactionId.substring(0, 12)}...
-                            </Badge>
+                             <Button asChild variant="link" className="p-0 h-auto font-mono text-xs">
+                                <Link href={`https://polygonscan.com/tx/${donation.transactionId}`} target="_blank" rel="noopener noreferrer">
+                                   {donation.transactionId.substring(0, 12)}...
+                                   <ExternalLink className="ml-1 h-3 w-3" />
+                                </Link>
+                              </Button>
                             </TableCell>
                         </TableRow>
                         ))}

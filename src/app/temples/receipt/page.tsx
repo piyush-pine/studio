@@ -6,8 +6,9 @@ import { useSearchParams } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
-import { CheckCircle, Download, Share2 } from 'lucide-react';
+import { CheckCircle, Download, Share2, ExternalLink } from 'lucide-react';
 import { Skeleton } from '@/components/ui/skeleton';
+import Link from 'next/link';
 
 function ReceiptContent() {
     const searchParams = useSearchParams();
@@ -70,12 +71,15 @@ function ReceiptContent() {
                     </div>
                     <div className="flex justify-between items-start gap-4">
                         <span className="text-muted-foreground">Transaction ID:</span>
-                        <span className="font-mono text-xs break-all text-right">{transactionId}</span>
+                        <Link href={`https://polygonscan.com/tx/${transactionId}`} target="_blank" rel="noopener noreferrer" className="font-mono text-xs break-all text-right text-primary hover:underline flex items-center gap-1">
+                          <span>{transactionId}</span>
+                          <ExternalLink className="h-3 w-3 shrink-0" />
+                        </Link>
                     </div>
                 </div>
                 <Separator />
                  <p className="text-xs text-muted-foreground text-center pt-2">
-                    This is a simulated receipt for a non-financial transaction. Your contribution is deeply valued. May you be blessed with peace and prosperity.
+                    This is a simulated receipt. Clicking the transaction ID will show a real transaction on PolygonScan to demonstrate the concept. Your contribution is deeply valued. May you be blessed with peace and prosperity.
                 </p>
             </CardContent>
             <CardFooter className="flex flex-col sm:flex-row gap-2 print:hidden">
