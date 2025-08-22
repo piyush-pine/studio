@@ -28,9 +28,9 @@ const prompt = ai.definePrompt({
   name: 'randomVedaVersePrompt',
   input: {schema: RandomVedaVerseInputSchema},
   output: {schema: RandomVedaVerseOutputSchema},
-  prompt: `You are a Vedic scholar. Your task is to provide a random verse from the Vedas, along with its source (Veda name and section).
+  prompt: `You are a Vedic scholar. Your task is to provide a random verse from one of the four Vedas: Rigveda, Yajurveda, Samaveda, or Atharvaveda.
 
-  Respond with a verse and its source.
+  Randomly select one of the four Vedas and provide a significant verse from it, along with its source (e.g., Rigveda, Mandala 1, Hymn 1, Verse 1).
   `,
 });
 

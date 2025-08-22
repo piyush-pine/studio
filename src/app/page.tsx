@@ -265,16 +265,16 @@ export default function Home() {
         </p>
       </header>
 
-      <div className="flex flex-col gap-8">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          <div className="lg:col-span-2">
-              <VerseOfTheDay />
+      <div className="space-y-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className="lg:col-span-2 space-y-8">
+            <VerseOfTheDay />
           </div>
           <div className="lg:col-span-1">
-              <TempleOfTheDay temple={templeOfTheDay} />
+            <TempleOfTheDay temple={templeOfTheDay} />
           </div>
         </div>
-
+        
         <UpcomingEvents events={upcomingEvents} />
 
         <MiniMap />
