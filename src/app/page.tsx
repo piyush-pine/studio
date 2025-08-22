@@ -94,7 +94,7 @@ function TempleOfTheDay({ temple }: { temple: Temple }) {
 
 function MiniMap() {
     return (
-         <Card className="overflow-hidden col-span-1 md:col-span-2 lg:col-span-3">
+         <Card>
             <CardHeader>
                 <CardTitle className="font-headline">Explore Temples</CardTitle>
                 <CardDescription>Find a sacred place near you.</CardDescription>
@@ -134,7 +134,7 @@ function UpcomingEvents({ events }: { events: TempleEvent[] }) {
     if(events.length === 0) return null;
 
     return (
-        <Card className="col-span-1 md:col-span-2 lg:col-span-3">
+        <Card>
             <CardHeader>
                 <CardTitle className="font-headline flex items-center gap-2">
                     <CalendarDays className="h-6 w-6 text-accent" />
@@ -192,7 +192,7 @@ function DonationHighlights() {
     const recentDonations = useMemo(() => donations.slice(0, 5), [donations]);
 
     return (
-        <Card className="col-span-1 md:col-span-2 lg:col-span-3">
+        <Card>
             <CardHeader>
                 <CardTitle className="font-headline">Donation Highlights</CardTitle>
                 <CardDescription>
@@ -265,12 +265,12 @@ export default function Home() {
         </p>
       </header>
 
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-        <div className="lg:col-span-2"><VerseOfTheDay /></div>
-        <div className="lg:col-span-1"><TempleOfTheDay temple={templeOfTheDay} /></div>
-        <div className="lg:col-span-3"><UpcomingEvents events={upcomingEvents} /></div>
-        <div className="lg:col-span-3"><MiniMap /></div>
-        <div className="lg:col-span-3"><DonationHighlights /></div>
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+        <div className="md:col-span-2"><VerseOfTheDay /></div>
+        <div className="md:col-span-1"><TempleOfTheDay temple={templeOfTheDay} /></div>
+        <div className="md:col-span-3"><UpcomingEvents events={upcomingEvents} /></div>
+        <div className="md:col-span-3"><MiniMap /></div>
+        <div className="md:col-span-3"><DonationHighlights /></div>
       </div>
     </div>
   );
