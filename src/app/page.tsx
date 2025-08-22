@@ -1,3 +1,4 @@
+
 'use client';
 import { useEffect, useState, useMemo } from 'react';
 import Link from 'next/link';
@@ -104,7 +105,7 @@ function MiniMap() {
             </CardHeader>
             <CardContent>
                  <div className="relative h-64 w-full bg-secondary/30 rounded-lg overflow-hidden group">
-                    <Image src="https://placehold.co/600x400" layout="fill" objectFit="cover" alt="Map of India" data-ai-hint="map India" />
+                    <Image src="https://storage.googleapis.com/static.aiforge.co/misc/map_bg.png" layout="fill" objectFit="cover" alt="Map of India" data-ai-hint="map India" />
                     <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
                     {temples.map(temple => (
                         <Link key={temple.id} href={`/temples/${temple.id}`} passHref>
@@ -287,3 +288,5 @@ export default function Home() {
     </div>
   );
 }
+
+    

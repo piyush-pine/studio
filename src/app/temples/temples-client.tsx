@@ -70,7 +70,7 @@ export default function TemplesClient() {
         <h2 className="font-headline text-2xl mb-4">Temple Map</h2>
         <Card className="h-[700px] w-full">
             <div className="relative h-full w-full bg-secondary/30 rounded-lg overflow-hidden group">
-                <Image src="https://placehold.co/800x800" layout="fill" objectFit="cover" alt="Map of India" data-ai-hint="map India"/>
+                <Image src="https://storage.googleapis.com/static.aiforge.co/misc/map_bg.png" layout="fill" objectFit="cover" alt="Map of India" data-ai-hint="map India"/>
                 <div className="absolute top-4 left-4 text-sm text-muted-foreground bg-background/80 p-2 rounded-md">
                     Map simulation. Click a marker to view details.
                 </div>
@@ -96,3 +96,5 @@ export default function TemplesClient() {
     </div>
   );
 }
+
+    
