@@ -226,6 +226,12 @@ export function Header() {
         <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
           <nav className="hidden md:flex items-center gap-2">
             <NavLinks />
+             <Button asChild variant="ghost" size="icon">
+              <a href="https://github.com/firebase/genkit/tree/main/studio/samples/dharma-treasury" target="_blank" rel="noopener noreferrer">
+                  <Github />
+                  <span className="sr-only">View on GitHub</span>
+              </a>
+            </Button>
           </nav>
           <div className="flex items-center gap-2">
             <ThemeToggle />
