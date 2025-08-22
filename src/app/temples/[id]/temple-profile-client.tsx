@@ -16,11 +16,12 @@ import {
   CarouselPrevious,
 } from '@/components/ui/carousel';
 import { useToast } from '@/hooks/use-toast';
-import { MapPin, HandCoins, Landmark, Star, Share2, Twitter, Facebook, Linkedin, Tag } from 'lucide-react';
+import { MapPin, HandCoins, Landmark, Star, Share2, Twitter, Facebook, Linkedin, Tag, Clock, Bell } from 'lucide-react';
 import { useAuth } from '@/hooks/use-auth';
 import { cn } from '@/lib/utils';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { Badge } from '@/components/ui/badge';
+import { Separator } from '@/components/ui/separator';
 
 export default function TempleProfileClient({ temple }: { temple: Temple }) {
   const { user } = useAuth();
@@ -65,6 +66,13 @@ export default function TempleProfileClient({ temple }: { temple: Temple }) {
       return window.location.href;
     }
     return '';
+  }
+
+  const handleSetReminder = (prayerName: string, time: string) => {
+    toast({
+      title: 'Reminder Set',
+      description: `We'll remind you for ${prayerName} at ${time}. (Simulation)`,
+    });
   }
 
   return (
@@ -127,7 +135,7 @@ export default function TempleProfileClient({ temple }: { temple: Temple }) {
                 <CarouselNext className="right-4"/>
             </Carousel>
         </div>
-        <div className="lg:col-span-2">
+        <div className="lg:col-span-2 space-y-8">
             <Card>
                 <CardHeader>
                     <CardTitle className="font-headline text-2xl flex items-center gap-2"><Landmark className="h-6 w-6 text-accent"/>About the Temple</CardTitle>
@@ -148,6 +156,30 @@ export default function TempleProfileClient({ temple }: { temple: Temple }) {
                         <HandCoins className="mr-2 h-5 w-5" />
                         Donate Now
                     </Button>
+                </CardContent>
+            </Card>
+            <Card>
+                <CardHeader>
+                    <CardTitle className="font-headline text-2xl flex items-center gap-2">
+                        <Clock className="h-6 w-6 text-accent" />
+                        Daily Rituals & Timings
+                    </CardTitle>
+                </CardHeader>
+                <CardContent>
+                    <ul className="space-y-3">
+                        {temple.prayerTimings.map((ritual, index) => (
+                            <li key={index} className="flex justify-between items-center text-sm">
+                                <div>
+                                    <p className="font-medium">{ritual.name}</p>
+                                    <p className="text-muted-foreground">{ritual.time}</p>
+                                </div>
+                                <Button variant="outline" size="sm" onClick={() => handleSetReminder(ritual.name, ritual.time)}>
+                                    <Bell className="mr-2 h-4 w-4" />
+                                    Set Reminder
+                                </Button>
+                            </li>
+                        ))}
+                    </ul>
                 </CardContent>
             </Card>
         </div>

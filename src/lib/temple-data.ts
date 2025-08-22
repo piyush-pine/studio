@@ -7,6 +7,7 @@ export interface Temple {
   image: string;
   images: string[];
   tags: string[];
+  prayerTimings: { name: string; time: string; }[];
   location: {
     lat: number;
     lng: number;
@@ -27,6 +28,12 @@ export const temples: Temple[] = [
       'https://placehold.co/800x602',
     ],
     tags: ['Shiva', 'Pilgrimage', 'Ganges'],
+    prayerTimings: [
+        { name: "Mangala Aarti", time: "3:00 AM" },
+        { name: "Bhog Aarti", time: "11:30 AM" },
+        { name: "Saptarishi Aarti", time: "7:00 PM" },
+        { name: "Shayan Aarti", time: "10:30 PM" },
+    ],
     location: { lat: 25.3109, lng: 83.0104, city: 'Varanasi' },
   },
   {
@@ -41,6 +48,12 @@ export const temples: Temple[] = [
       'https://placehold.co/800x605',
     ],
     tags: ['Meditation', 'Philosophy', 'Himalayas'],
+    prayerTimings: [
+        { name: "Morning Meditation", time: "5:00 AM" },
+        { name: "Vedic Chanting", time: "9:00 AM" },
+        { name: "Discourse", time: "4:00 PM" },
+        { name: "Evening Silence", time: "7:00 PM" },
+    ],
     location: { lat: 30.3165, lng: 78.0322, city: 'Dehradun' },
   },
   {
@@ -55,6 +68,12 @@ export const temples: Temple[] = [
       'https://placehold.co/800x608',
     ],
     tags: ['Vishnu', 'Architecture', 'Sculpture'],
+     prayerTimings: [
+        { name: "Suprabhatam", time: "5:30 AM" },
+        { name: "Abhishekam", time: "10:00 AM" },
+        { name: "Sayarakshai", time: "6:00 PM" },
+        { name: "Ardha Jama Puja", time: "9:00 PM" },
+    ],
     location: { lat: 13.0827, lng: 80.2707, city: 'Chennai' },
   },
   {
@@ -69,6 +88,11 @@ export const temples: Temple[] = [
       'https://placehold.co/800x611',
     ],
     tags: ['Shakti', 'Desert', 'Sound Healing'],
+     prayerTimings: [
+        { name: "Devi Stuti", time: "6:30 AM" },
+        { name: "Madhyanha Puja", time: "12:00 PM" },
+        { name: "Sandhya Aarti", time: "6:30 PM" },
+    ],
     location: { lat: 26.9124, lng: 75.7873, city: 'Jaipur' },
   },
   {
@@ -83,6 +107,11 @@ export const temples: Temple[] = [
       'https://placehold.co/800x614',
     ],
     tags: ['Modern', 'Peace', 'Community'],
+     prayerTimings: [
+        { name: "Universal Prayer", time: "10:00 AM" },
+        { name: "Silent Contemplation", time: "1:00 PM" },
+        { name: "Community Gathering", time: "5:00 PM" },
+    ],
     location: { lat: 22.5726, lng: 88.3639, city: 'Kolkata' },
   },
   {
@@ -97,6 +126,11 @@ export const temples: Temple[] = [
       'https://placehold.co/800x617',
     ],
     tags: ['Shiva', 'Natural Wonder', 'Meditation'],
+     prayerTimings: [
+        { name: "Cave Meditation", time: "6:00 AM" },
+        { name: "Lingam Puja", time: "12:00 PM" },
+        { name: "Deep Aradhana", time: "7:00 PM" },
+    ],
     location: { lat: 17.3850, lng: 78.4867, city: 'Hyderabad' },
   }
 ];
