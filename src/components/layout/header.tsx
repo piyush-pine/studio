@@ -14,6 +14,7 @@ import {
   PanelLeftOpen,
   Github,
   Star,
+  Sparkles,
 } from 'lucide-react';
 import { useAuth } from '@/hooks/use-auth';
 import { Button } from '@/components/ui/button';
@@ -40,6 +41,7 @@ const navItems = [
   { href: '/', label: 'Home', icon: Home },
   { href: '/temples', label: 'Temples', icon: Landmark },
   { href: '/library', label: 'Vedic Library', icon: BookOpen },
+  { href: '/wall-of-devotion', label: 'Wall of Devotion', icon: Sparkles },
 ];
 
 const privateNavItems = [
