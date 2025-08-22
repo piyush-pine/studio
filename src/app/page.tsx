@@ -8,8 +8,17 @@ import {
 import { useDonations } from '@/hooks/use-donations';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { BookOpen, Landmark, HandCoins, BarChart2 } from 'lucide-react';
+import { BookOpen, Landmark, HandCoins, BarChart2, CheckCircle } from 'lucide-react';
 import { Skeleton } from '@/components/ui/skeleton';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/components/ui/table';
+import { Badge } from '@/components/ui/badge';
 
 export default function Home() {
   const [verse, setVerse] = useState<RandomVedaVerseOutput | null>(null);
@@ -33,6 +42,10 @@ export default function Home() {
 
   const totalDonated = useMemo(() => {
     return donations.reduce((acc, curr) => acc + curr.amount, 0);
+  }, [donations]);
+  
+  const recentDonations = useMemo(() => {
+    return donations.slice(0, 5);
   }, [donations]);
 
   return (
@@ -122,6 +135,56 @@ export default function Home() {
               <p className="text-muted-foreground text-sm mt-1">Visualize your impact.</p>
             </div>
           </Link>
+        </CardContent>
+      </Card>
+
+       <Card>
+        <CardHeader>
+          <CardTitle className="font-headline">Transaction Transparency</CardTitle>
+          <CardDescription>
+            A public ledger of all recent simulated donations.
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          {recentDonations.length > 0 ? (
+            <div className="overflow-x-auto">
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Temple</TableHead>
+                    <TableHead className="text-right">Amount (INR)</TableHead>
+                    <TableHead>Date</TableHead>
+                    <TableHead>Transaction ID</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {recentDonations.map((donation) => (
+                    <TableRow key={donation.id}>
+                      <TableCell className="font-medium">{donation.templeName}</TableCell>
+                      <TableCell className="text-right">₹{donation.amount.toLocaleString('en-IN')}</TableCell>
+                      <TableCell>{new Date(donation.date).toLocaleDateString()}</TableCell>
+                      <TableCell>
+                        <Badge variant="secondary" className="font-mono text-xs">
+                          {donation.transactionId.substring(0, 12)}...
+                        </Badge>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </div>
+          ) : (
+            <div className="text-center py-12">
+                <CheckCircle className="mx-auto h-12 w-12 text-muted-foreground" />
+                <h3 className="mt-4 text-lg font-medium">No Donations Yet</h3>
+                <p className="mt-1 text-sm text-muted-foreground">
+                    The first transaction will appear here.
+                </p>
+                <Button asChild className="mt-4">
+                <Link href="/temples">Find a Temple to Support</Link>
+                </Button>
+            </div>
+          )}
         </CardContent>
       </Card>
     </div>
