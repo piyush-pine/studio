@@ -1,3 +1,4 @@
+
 'use client';
 
 import Link from 'next/link';
@@ -15,6 +16,7 @@ import {
   Github,
   Star,
   Sparkles,
+  Shield,
 } from 'lucide-react';
 import { useAuth } from '@/hooks/use-auth';
 import { Button } from '@/components/ui/button';
@@ -125,6 +127,12 @@ export function Header() {
               <Link href="/favorites">
                 <Star className="mr-2 h-4 w-4" />
                 <span>My Favorites</span>
+              </Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem asChild>
+              <Link href="/admin">
+                <Shield className="mr-2 h-4 w-4" />
+                <span>Admin</span>
               </Link>
             </DropdownMenuItem>
             <DropdownMenuSeparator />
