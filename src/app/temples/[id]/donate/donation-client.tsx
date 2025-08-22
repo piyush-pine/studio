@@ -137,6 +137,10 @@ export default function DonationClient({ temple }: { temple: Temple }) {
                             <Users className="h-5 w-5 mt-1 text-primary shrink-0"/>
                             <span>You become part of a community dedicated to upholding our rich cultural and spiritual heritage for future generations.</span>
                         </div>
+                         <div className="flex items-start gap-3">
+                            <HandCoins className="h-5 w-5 mt-1 text-primary shrink-0"/>
+                            <span>The donated money goes directly to temple authorities and partner organizations to perform rituals and help the needy.</span>
+                        </div>
                     </CardContent>
                 </Card>
                  <Card>
