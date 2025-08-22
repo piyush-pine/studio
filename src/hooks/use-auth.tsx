@@ -30,6 +30,8 @@ export const signupSchema = z.object({
 export type LoginInput = z.infer<typeof loginSchema>;
 export type SignupInput = z.infer<typeof signupSchema>;
 
+// Hardcoded admin email for simplicity
+export const ADMIN_EMAIL = 'admin@dharmatrust.com';
 
 interface AuthContextType {
   user: User | null;

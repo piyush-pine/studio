@@ -18,7 +18,7 @@ import {
   Sparkles,
   Shield,
 } from 'lucide-react';
-import { useAuth } from '@/hooks/use-auth';
+import { useAuth, ADMIN_EMAIL } from '@/hooks/use-auth';
 import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
@@ -106,6 +106,7 @@ export function Header() {
     }
 
     if (user) {
+      const isAdmin = user.email === ADMIN_EMAIL;
       return (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -129,12 +130,14 @@ export function Header() {
                 <span>My Favorites</span>
               </Link>
             </DropdownMenuItem>
-            <DropdownMenuItem asChild>
-              <Link href="/admin">
-                <Shield className="mr-2 h-4 w-4" />
-                <span>Admin</span>
-              </Link>
-            </DropdownMenuItem>
+            {isAdmin && (
+              <DropdownMenuItem asChild>
+                <Link href="/admin">
+                  <Shield className="mr-2 h-4 w-4" />
+                  <span>Admin</span>
+                </Link>
+              </DropdownMenuItem>
+            )}
             <DropdownMenuSeparator />
             <DropdownMenuItem onClick={handleLogout}>
               <LogOut className="mr-2 h-4 w-4" />

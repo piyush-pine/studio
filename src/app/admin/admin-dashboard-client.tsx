@@ -3,7 +3,7 @@
 
 import { useDonations } from '@/hooks/use-donations';
 import { usePosts } from '@/hooks/use-posts';
-import { useAuth } from '@/hooks/use-auth';
+import { useAuth, ADMIN_EMAIL } from '@/hooks/use-auth';
 import { temples } from '@/lib/temple-data';
 import {
   Card,
@@ -30,6 +30,7 @@ import {
   CheckCircle,
   XCircle,
   MessageSquare,
+  ShieldAlert,
 } from 'lucide-react';
 import Link from 'next/link';
 
@@ -223,15 +224,16 @@ export default function AdminDashboardClient() {
     return <p>Loading...</p>;
   }
 
-  if (!user) {
+  if (!user || user.email !== ADMIN_EMAIL) {
     return (
       <div className="flex h-[80vh] flex-col items-center justify-center text-center">
-        <h2 className="text-2xl font-bold">Access Denied</h2>
+        <ShieldAlert className="h-16 w-16 text-destructive" />
+        <h2 className="mt-4 text-2xl font-bold">Access Denied</h2>
         <p className="text-muted-foreground">
-          You must be logged in to view the admin dashboard.
+          You do not have permission to view the admin dashboard.
         </p>
         <Button asChild className="mt-4">
-          <Link href="/login">Login</Link>
+          <Link href="/">Return to Home</Link>
         </Button>
       </div>
     );
