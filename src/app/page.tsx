@@ -268,12 +268,10 @@ export default function Home() {
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         <VerseOfTheDay />
         <TempleOfTheDay temple={templeOfTheDay} />
-        <MiniMap />
         <UpcomingEvents events={upcomingEvents} />
+        <MiniMap />
         <DonationHighlights />
       </div>
     </div>
   );
 }
-
-    
