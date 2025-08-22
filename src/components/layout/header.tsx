@@ -199,7 +199,7 @@ export function Header() {
              </>
           )}
            <Button asChild variant="ghost" className="justify-start">
-              <a href="https://github.com/firebase/genkit/tree/main/studio/samples/dharma-treasury" target="_blank" rel="noopener noreferrer">
+              <a href="https://github.com/firebase/studio-dharma-treasury" target="_blank" rel="noopener noreferrer">
                   <Github className="mr-2 h-4 w-4" />
                   <span>View on GitHub</span>
               </a>
@@ -227,7 +227,7 @@ export function Header() {
           <nav className="hidden md:flex items-center gap-2">
             <NavLinks />
              <Button asChild variant="ghost" size="icon">
-              <a href="https://github.com/firebase/genkit/tree/main/studio/samples/dharma-treasury" target="_blank" rel="noopener noreferrer">
+              <a href="https://github.com/firebase/studio-dharma-treasury" target="_blank" rel="noopener noreferrer">
                   <Github />
                   <span className="sr-only">View on GitHub</span>
               </a>
