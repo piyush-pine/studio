@@ -6,6 +6,7 @@ import { ThemeProvider } from '@/components/theme-provider';
 import { MainLayout } from '@/components/layout/main-layout';
 import { DonationsProvider } from '@/hooks/use-donations';
 import { AuthProvider } from '@/hooks/use-auth';
+import { FavoritesProvider } from '@/hooks/use-favorites.tsx';
 
 export const metadata: Metadata = {
   title: 'Dharma Treasury',
@@ -32,9 +33,11 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <AuthProvider>
             <DonationsProvider>
-              <MainLayout>
-                {children}
-              </MainLayout>
+              <FavoritesProvider>
+                <MainLayout>
+                  {children}
+                </MainLayout>
+              </FavoritesProvider>
             </DonationsProvider>
           </AuthProvider>
           <Toaster />

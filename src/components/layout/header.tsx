@@ -13,6 +13,7 @@ import {
   UserPlus,
   PanelLeftOpen,
   Github,
+  Star,
 } from 'lucide-react';
 import { useAuth } from '@/hooks/use-auth';
 import { Button } from '@/components/ui/button';
@@ -44,6 +45,7 @@ const navItems = [
 const privateNavItems = [
   { href: '/account', label: 'My Account', icon: User },
   { href: '/reports', label: 'Reports', icon: BarChart2 },
+  { href: '/favorites', label: 'My Favorites', icon: Star },
 ];
 
 export function Header() {
@@ -117,6 +119,13 @@ export function Header() {
                 <span>Profile</span>
               </Link>
             </DropdownMenuItem>
+             <DropdownMenuItem asChild>
+              <Link href="/favorites">
+                <Star className="mr-2 h-4 w-4" />
+                <span>My Favorites</span>
+              </Link>
+            </DropdownMenuItem>
+            <DropdownMenuSeparator />
             <DropdownMenuItem onClick={handleLogout}>
               <LogOut className="mr-2 h-4 w-4" />
               <span>Log out</span>
