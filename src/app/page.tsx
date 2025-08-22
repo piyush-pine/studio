@@ -94,7 +94,7 @@ function TempleOfTheDay({ temple }: { temple: Temple }) {
 
 function MiniMap() {
     return (
-         <Card className="overflow-hidden">
+         <Card className="overflow-hidden col-span-1 md:col-span-2 lg:col-span-3">
             <CardHeader>
                 <CardTitle className="font-headline">Explore Temples</CardTitle>
                 <CardDescription>Find a sacred place near you.</CardDescription>
@@ -169,7 +169,7 @@ function UpcomingEvents({ events }: { events: TempleEvent[] }) {
                                             <Badge variant="secondary">{new Date(event.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric' })}</Badge>
                                             <Button variant="ghost" size="sm" asChild>
                                                 <Link href={`/temples/${event.templeId}`}>
-                                                    View Temple <ArrowRight className="ml-1" />
+                                                    View Temple <ArrowRight className="ml-1 h-4 w-4" />
                                                 </Link>
                                             </Button>
                                         </div>
@@ -268,19 +268,12 @@ export default function Home() {
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         <VerseOfTheDay />
         <TempleOfTheDay temple={templeOfTheDay} />
-      </div>
-
-      <div className="grid gap-6">
         <MiniMap />
-      </div>
-      
-       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         <UpcomingEvents events={upcomingEvents} />
-      </div>
-      
-      <div className="grid gap-6 md:grid-cols-1">
         <DonationHighlights />
       </div>
     </div>
   );
 }
+
+    
