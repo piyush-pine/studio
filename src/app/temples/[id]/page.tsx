@@ -1,6 +1,8 @@
+
 import { getTempleById, temples } from '@/lib/temple-data';
 import { notFound } from 'next/navigation';
 import TempleProfileClient from './temple-profile-client';
+import type { Metadata } from 'next';
 
 interface TempleProfilePageProps {
   params: {
@@ -14,7 +16,7 @@ export async function generateStaticParams() {
   }));
 }
 
-export async function generateMetadata({ params }: TempleProfilePageProps) {
+export async function generateMetadata({ params }: TempleProfilePageProps): Promise<Metadata> {
   const temple = getTempleById(params.id);
 
   if (!temple) {
