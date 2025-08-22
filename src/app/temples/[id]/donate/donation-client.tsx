@@ -14,13 +14,24 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { useToast } from '@/hooks/use-toast';
-import { HandCoins, ShieldCheck, Heart, Users, Hourglass, CheckCircle, XCircle } from 'lucide-react';
+import { HandCoins, ShieldCheck, Heart, Users, Hourglass, CheckCircle, XCircle, Gift, Soup, Wrench, Package } from 'lucide-react';
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import { Label } from '@/components/ui/label';
 
 const donationSchema = z.object({
-  amount: z.coerce.number().min(10, { message: 'Donation must be at least ₹10.' }),
+  amount: z.coerce.number().min(10, { message: 'Donation must be at least ?10.' }),
+  purpose: z.string().default('General Donation'),
 });
 
 type DonationFormValues = z.infer<typeof donationSchema>;
+
+const donationPurposes = [
+  { id: 'temple-maintenance', label: 'Temple Maintenance', icon: Wrench },
+  { id: 'community-meals', label: 'Community Meals (Annadanam)', icon: Soup },
+  { id: 'festival-fund', label: 'Festival Fund', icon: Gift },
+  { id: 'general-donation', label: 'General Donation', icon: Package },
+];
+
 
 export default function DonationClient({ temple }: { temple: Temple }) {
   const [processingState, setProcessingState] = useState<'idle' | 'processing' | 'success' | 'error'>('idle');
@@ -33,6 +44,7 @@ export default function DonationClient({ temple }: { temple: Temple }) {
     resolver: zodResolver(donationSchema),
     defaultValues: {
       amount: 101,
+      purpose: 'General Donation',
     },
   });
 
@@ -49,6 +61,7 @@ export default function DonationClient({ temple }: { temple: Temple }) {
       templeId: temple.id,
       templeName: temple.name,
       amount: data.amount,
+      purpose: data.purpose,
       date: new Date().toISOString(),
       transactionId: newTransactionId,
     };
@@ -59,7 +72,7 @@ export default function DonationClient({ temple }: { temple: Temple }) {
     setProcessingState('success');
     toast({
       title: "Donation Successful!",
-      description: `You earned 10 Karma Points! Your donation of ₹${data.amount} to ${temple.name} has been confirmed.`,
+      description: `You earned 10 Karma Points! Your donation of ?${data.amount} to ${temple.name} has been confirmed.`,
     });
 
     // Redirect to the receipt page with donation details
@@ -99,7 +112,7 @@ export default function DonationClient({ temple }: { temple: Temple }) {
                 <CardContent>
                     <Form {...form}>
                         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                            <FormField
+                             <FormField
                                 control={form.control}
                                 name="amount"
                                 render={({ field }) => (
@@ -112,13 +125,45 @@ export default function DonationClient({ temple }: { temple: Temple }) {
                                     </FormItem>
                                 )}
                             />
-                            <div className="flex gap-2">
+                             <div className="flex gap-2">
                                 {[51, 101, 251, 501].map(amount => (
                                     <Button key={amount} type="button" variant="outline" onClick={() => form.setValue('amount', amount)}>
-                                        ₹{amount}
+                                        ?{amount}
                                     </Button>
                                 ))}
                             </div>
+                             <FormField
+                                control={form.control}
+                                name="purpose"
+                                render={({ field }) => (
+                                    <FormItem className="space-y-3">
+                                        <FormLabel>Donation Purpose</FormLabel>
+                                         <FormControl>
+                                            <RadioGroup
+                                            onValueChange={field.onChange}
+                                            defaultValue={field.value}
+                                            className="grid grid-cols-1 md:grid-cols-2 gap-4"
+                                            >
+                                            {donationPurposes.map((purpose) => {
+                                                const Icon = purpose.icon
+                                                return (
+                                                <FormItem key={purpose.id}>
+                                                     <FormControl>
+                                                        <RadioGroupItem value={purpose.label} id={purpose.id} className="peer sr-only" />
+                                                     </FormControl>
+                                                     <Label htmlFor={purpose.id} className="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary cursor-pointer">
+                                                         <Icon className="mb-3 h-6 w-6" />
+                                                         {purpose.label}
+                                                    </Label>
+                                                </FormItem>
+                                                )
+                                            })}
+                                            </RadioGroup>
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                             />
                             <Button type="submit" size="lg" className="w-full" disabled={form.formState.isSubmitting}>
                                 {form.formState.isSubmitting ? 'Processing...' : 'Confirm Donation'}
                             </Button>

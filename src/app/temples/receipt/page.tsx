@@ -6,9 +6,11 @@ import { useSearchParams } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
-import { CheckCircle, Download, Share2, ExternalLink } from 'lucide-react';
+import { CheckCircle, Download, Share2, ExternalLink, FileText } from 'lucide-react';
 import { Skeleton } from '@/components/ui/skeleton';
 import Link from 'next/link';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+
 
 function ReceiptContent() {
     const searchParams = useSearchParams();
@@ -17,8 +19,9 @@ function ReceiptContent() {
     const amount = searchParams.get('amount');
     const date = searchParams.get('date');
     const transactionId = searchParams.get('transactionId');
-    
-    if (!templeName || !amount || !date || !transactionId) {
+    const purpose = searchParams.get('purpose');
+
+    if (!templeName || !amount || !date || !transactionId || !purpose) {
         return (
             <div className="text-center">
                 <h2 className="text-2xl font-bold text-destructive">Receipt Data Missing</h2>
@@ -37,7 +40,7 @@ function ReceiptContent() {
         if (navigator.share) {
             navigator.share({
                 title: 'My Donation Receipt',
-                text: `I just made a donation of ₹${amount} to ${templeName} via Dharma Treasury! Transaction ID: ${transactionId.substring(0,12)}...`,
+                text: `I just made a donation of ?${amount} to ${templeName} via Dharma Treasury! Transaction ID: ${transactionId.substring(0,12)}...`,
                 url: window.location.href,
             })
             .then(() => console.log('Successful share'))
@@ -61,9 +64,13 @@ function ReceiptContent() {
                         <span className="text-muted-foreground">Donated To:</span>
                         <span className="font-medium text-right">{templeName}</span>
                     </div>
+                     <div className="flex justify-between">
+                        <span className="text-muted-foreground">Purpose:</span>
+                        <span className="font-medium text-right">{purpose}</span>
+                    </div>
                     <div className="flex justify-between">
                         <span className="text-muted-foreground">Amount:</span>
-                        <span className="font-bold text-lg text-primary text-right">₹{Number(amount).toLocaleString('en-IN')}</span>
+                        <span className="font-bold text-lg text-primary text-right">?{Number(amount).toLocaleString('en-IN')}</span>
                     </div>
                     <div className="flex justify-between">
                         <span className="text-muted-foreground">Date:</span>
@@ -78,6 +85,13 @@ function ReceiptContent() {
                     </div>
                 </div>
                 <Separator />
+                <Alert>
+                    <FileText className="h-4 w-4" />
+                    <AlertTitle>Tax Information (Simulation)</AlertTitle>
+                    <AlertDescription>
+                        This is a simulated receipt for demonstration purposes. In a real-world scenario, donations to registered non-profit religious organizations may be eligible for tax deductions under section 80G of the Income Tax Act. Please consult a tax professional for advice on your specific situation.
+                    </AlertDescription>
+                </Alert>
                  <p className="text-xs text-muted-foreground text-center pt-2">
                     This is a simulated receipt. Clicking the transaction ID will show a real transaction on PolygonScan to demonstrate the concept. Your contribution is deeply valued. May you be blessed with peace and prosperity.
                 </p>

@@ -1,3 +1,4 @@
+
 'use client';
 
 import {
@@ -13,6 +14,7 @@ export interface Donation {
   templeId: string;
   templeName: string;
   amount: number;
+  purpose: string;
   date: string;
   transactionId: string;
 }
