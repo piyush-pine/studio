@@ -5,6 +5,7 @@ import { Toaster } from '@/components/ui/toaster';
 import { ThemeProvider } from '@/components/theme-provider';
 import { MainLayout } from '@/components/layout/main-layout';
 import { DonationsProvider } from '@/hooks/use-donations';
+import { AuthProvider } from '@/hooks/use-auth';
 
 export const metadata: Metadata = {
   title: 'Dharma Treasury',
@@ -29,7 +30,9 @@ export default function RootLayout({
         )}
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <DonationsProvider>{children}</DonationsProvider>
+          <AuthProvider>
+            <DonationsProvider>{children}</DonationsProvider>
+          </AuthProvider>
           <Toaster />
         </ThemeProvider>
       </body>
