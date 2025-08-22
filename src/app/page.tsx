@@ -19,6 +19,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { ArrowRight, BookOpen, CalendarDays, CheckCircle, HandCoins, MapPin, Sparkles } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
+import { useToast } from '@/hooks/use-toast';
 
 function VerseOfTheDay() {
   const [verse, setVerse] = useState<RandomVedaVerseOutput | null>(null);
@@ -250,6 +251,23 @@ function DonationHighlights() {
 
 export default function Home() {
     const { user } = useAuth();
+    const { toast } = useToast();
+
+    // Simulate a real-time donation alert
+    useEffect(() => {
+        const hasShownAlert = sessionStorage.getItem('donationAlertShown');
+        if (!hasShownAlert) {
+            const timer = setTimeout(() => {
+                toast({
+                    title: 'Recent Community Donation',
+                    description: 'A large donation of ?5,001 has just been made to the Golden Temple of Varanasi! The community is grateful.',
+                });
+                sessionStorage.setItem('donationAlertShown', 'true');
+            }, 5000); // Show toast 5 seconds after page load
+
+            return () => clearTimeout(timer);
+        }
+    }, [toast]);
 
     const templeOfTheDay = useMemo(() => {
         const dayOfYear = Math.floor((Date.now() - new Date(new Date().getFullYear(), 0, 0).valueOf()) / 86400000);
@@ -288,5 +306,3 @@ export default function Home() {
     </div>
   );
 }
-
-    

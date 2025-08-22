@@ -16,10 +16,11 @@ import {
   CarouselPrevious,
 } from '@/components/ui/carousel';
 import { useToast } from '@/hooks/use-toast';
-import { MapPin, HandCoins, Landmark, Star, Share2, Twitter, Facebook, Linkedin } from 'lucide-react';
+import { MapPin, HandCoins, Landmark, Star, Share2, Twitter, Facebook, Linkedin, Tag } from 'lucide-react';
 import { useAuth } from '@/hooks/use-auth';
 import { cn } from '@/lib/utils';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
+import { Badge } from '@/components/ui/badge';
 
 export default function TempleProfileClient({ temple }: { temple: Temple }) {
   const { user } = useAuth();
@@ -132,7 +133,17 @@ export default function TempleProfileClient({ temple }: { temple: Temple }) {
                     <CardTitle className="font-headline text-2xl flex items-center gap-2"><Landmark className="h-6 w-6 text-accent"/>About the Temple</CardTitle>
                 </CardHeader>
                 <CardContent>
-                    <p className="text-muted-foreground leading-relaxed">{temple.longDescription}</p>
+                    <p className="text-muted-foreground leading-relaxed mb-6">{temple.longDescription}</p>
+                    
+                    <div className="mb-6">
+                        <h4 className="font-semibold mb-3 flex items-center gap-2 text-sm uppercase text-muted-foreground"><Tag className="h-4 w-4"/>Spiritual Themes</h4>
+                        <div className="flex flex-wrap gap-2">
+                            {temple.tags.map(tag => (
+                                <Badge key={tag} variant="secondary">{tag}</Badge>
+                            ))}
+                        </div>
+                    </div>
+                    
                     <Button size="lg" className="w-full mt-6" onClick={handleDonateClick}>
                         <HandCoins className="mr-2 h-5 w-5" />
                         Donate Now

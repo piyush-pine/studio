@@ -1,6 +1,7 @@
 
 'use client';
 
+import { useMemo } from 'react';
 import { useDonations } from '@/hooks/use-donations';
 import {
   Table,
@@ -11,7 +12,7 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { HandCoins, Medal, Gem, Shield, Crown, ExternalLink } from 'lucide-react';
+import { HandCoins, Medal, Gem, Shield, Crown, ExternalLink, Calendar, Heart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
@@ -70,13 +71,51 @@ function KarmaCard() {
     );
 }
 
+function MonthlySummaryCard() {
+    const { donations } = useDonations();
+    const { user } = useAuth();
+
+    const monthlyDonations = useMemo(() => {
+        const now = new Date();
+        const firstDayOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
+        return donations.filter(d => new Date(d.date) >= firstDayOfMonth);
+    }, [donations]);
+
+    const monthlyTotal = useMemo(() => {
+        return monthlyDonations.reduce((acc, curr) => acc + curr.amount, 0);
+    }, [monthlyDonations]);
+
+    if(monthlyTotal === 0) return null;
+
+    return (
+        <Card>
+            <CardHeader>
+                <CardTitle className="font-headline flex items-center gap-2">
+                    <Calendar className="h-6 w-6 text-accent" />
+                    This Month's Summary
+                </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+                <p className="text-4xl font-bold text-center text-primary">
+                    ?{monthlyTotal.toLocaleString('en-IN')}
+                </p>
+                <div className="text-center text-muted-foreground">
+                    <p>Thank you, {user?.email?.split('@')[0] || 'Devotee'}, for your incredible generosity this month.</p>
+                    <p className="mt-2 text-sm flex items-center justify-center gap-2">Your support creates ripples of positive change. <Heart className="h-4 w-4 text-red-500" /></p>
+                </div>
+            </CardContent>
+        </Card>
+    )
+}
+
 export default function AccountClient() {
   const { donations } = useDonations();
 
   return (
     <div className="grid lg:grid-cols-3 gap-8">
-        <div className="lg:col-span-1">
+        <div className="lg:col-span-1 space-y-8">
             <KarmaCard />
+            <MonthlySummaryCard />
         </div>
         <div className="lg:col-span-2">
             <Card>

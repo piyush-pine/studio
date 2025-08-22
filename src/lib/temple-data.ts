@@ -6,6 +6,7 @@ export interface Temple {
   longDescription: string;
   image: string;
   images: string[];
+  tags: string[];
   location: {
     lat: number;
     lng: number;
@@ -25,6 +26,7 @@ export const temples: Temple[] = [
       'https://placehold.co/800x601',
       'https://placehold.co/800x602',
     ],
+    tags: ['Shiva', 'Pilgrimage', 'Ganges'],
     location: { lat: 25.3109, lng: 83.0104, city: 'Varanasi' },
   },
   {
@@ -38,6 +40,7 @@ export const temples: Temple[] = [
       'https://placehold.co/800x604',
       'https://placehold.co/800x605',
     ],
+    tags: ['Meditation', 'Philosophy', 'Himalayas'],
     location: { lat: 30.3165, lng: 78.0322, city: 'Dehradun' },
   },
   {
@@ -51,6 +54,7 @@ export const temples: Temple[] = [
       'https://placehold.co/800x607',
       'https://placehold.co/800x608',
     ],
+    tags: ['Vishnu', 'Architecture', 'Sculpture'],
     location: { lat: 13.0827, lng: 80.2707, city: 'Chennai' },
   },
   {
@@ -64,6 +68,7 @@ export const temples: Temple[] = [
       'https://placehold.co/800x610',
       'https://placehold.co/800x611',
     ],
+    tags: ['Shakti', 'Desert', 'Sound Healing'],
     location: { lat: 26.9124, lng: 75.7873, city: 'Jaipur' },
   },
   {
@@ -77,6 +82,7 @@ export const temples: Temple[] = [
       'https://placehold.co/800x613',
       'https://placehold.co/800x614',
     ],
+    tags: ['Modern', 'Peace', 'Community'],
     location: { lat: 22.5726, lng: 88.3639, city: 'Kolkata' },
   },
   {
@@ -90,6 +96,7 @@ export const temples: Temple[] = [
       'https://placehold.co/800x616',
       'https://placehold.co/800x617',
     ],
+    tags: ['Shiva', 'Natural Wonder', 'Meditation'],
     location: { lat: 17.3850, lng: 78.4867, city: 'Hyderabad' },
   }
 ];
