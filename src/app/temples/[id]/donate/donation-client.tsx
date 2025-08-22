@@ -8,6 +8,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import type { Temple } from '@/lib/temple-data';
 import { useDonations } from '@/hooks/use-donations';
+import { useKarma } from '@/hooks/use-karma';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
@@ -24,6 +25,7 @@ type DonationFormValues = z.infer<typeof donationSchema>;
 export default function DonationClient({ temple }: { temple: Temple }) {
   const [processingState, setProcessingState] = useState<'idle' | 'processing' | 'success' | 'error'>('idle');
   const { addDonation } = useDonations();
+  const { addKarma } = useKarma();
   const { toast } = useToast();
   const router = useRouter();
 
@@ -51,11 +53,12 @@ export default function DonationClient({ temple }: { temple: Temple }) {
     };
     
     addDonation(newDonation);
+    addKarma(10); // Award 10 Karma points for a donation
     
     setProcessingState('success');
     toast({
       title: "Donation Successful!",
-      description: `Your donation of ₹${data.amount} to ${temple.name} has been confirmed.`,
+      description: `You earned 10 Karma Points! Your donation of ₹${data.amount} to ${temple.name} has been confirmed.`,
     });
 
     // Redirect to the receipt page with donation details

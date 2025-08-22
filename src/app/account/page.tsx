@@ -1,7 +1,7 @@
 import AccountClient from "./account-client";
 
 export const metadata = {
-  title: 'My Account | Dharma Treasury',
+  title: 'My Profile | Dharma Treasury',
 };
 
 export default function AccountPage() {
@@ -9,10 +9,10 @@ export default function AccountPage() {
         <div className="p-4 md:p-8">
             <header className="mb-8">
                 <h1 className="font-headline text-4xl md:text-5xl font-bold text-primary">
-                My Simulated Account
+                My Devotional Profile
                 </h1>
                 <p className="text-muted-foreground mt-2 text-lg">
-                A summary of your simulated contributions.
+                View your Karma Points, badges, and contribution history.
                 </p>
             </header>
             <AccountClient />

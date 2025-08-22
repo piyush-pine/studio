@@ -7,6 +7,7 @@ import { MainLayout } from '@/components/layout/main-layout';
 import { DonationsProvider } from '@/hooks/use-donations';
 import { AuthProvider } from '@/hooks/use-auth';
 import { FavoritesProvider } from '@/hooks/use-favorites.tsx';
+import { KarmaProvider } from '@/hooks/use-karma';
 
 export const metadata: Metadata = {
   title: 'Dharma Treasury',
@@ -34,9 +35,11 @@ export default function RootLayout({
           <AuthProvider>
             <DonationsProvider>
               <FavoritesProvider>
-                <MainLayout>
-                  {children}
-                </MainLayout>
+                <KarmaProvider>
+                  <MainLayout>
+                    {children}
+                  </MainLayout>
+                </KarmaProvider>
               </FavoritesProvider>
             </DonationsProvider>
           </AuthProvider>
