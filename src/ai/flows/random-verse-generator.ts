@@ -15,7 +15,8 @@ const RandomVedaVerseInputSchema = z.object({});
 export type RandomVedaVerseInput = z.infer<typeof RandomVedaVerseInputSchema>;
 
 const RandomVedaVerseOutputSchema = z.object({
-  verse: z.string().describe('A random verse from the Vedas.'),
+  verse: z.string().describe('A random verse from the Vedas in its original language (Sanskrit).'),
+  translation: z.string().describe('The English translation of the verse.'),
   source: z.string().describe('The Veda and section from which the verse originates.'),
 });
 export type RandomVedaVerseOutput = z.infer<typeof RandomVedaVerseOutputSchema>;
@@ -30,7 +31,9 @@ const prompt = ai.definePrompt({
   output: {schema: RandomVedaVerseOutputSchema},
   prompt: `You are a Vedic scholar. Your task is to provide a random verse from one of the four Vedas: Rigveda, Yajurveda, Samaveda, or Atharvaveda.
 
-  Randomly select one of the four Vedas and provide a significant verse from it, along with its source (e.g., Rigveda, Mandala 1, Hymn 1, Verse 1).
+  Randomly select one of the four Vedas and provide a significant verse from it, in its original Sanskrit.
+  Also provide the English translation for the verse.
+  Finally, provide its source (e.g., Rigveda, Mandala 1, Hymn 1, Verse 1).
   `,
 });
 

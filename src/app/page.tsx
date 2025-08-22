@@ -17,6 +17,7 @@ import { Badge } from '@/components/ui/badge';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { ArrowRight, BookOpen, CalendarDays, CheckCircle, HandCoins, MapPin, Sparkles } from 'lucide-react';
+import { Separator } from '@/components/ui/separator';
 
 function VerseOfTheDay() {
   const [verse, setVerse] = useState<RandomVedaVerseOutput | null>(null);
@@ -49,13 +50,15 @@ function VerseOfTheDay() {
         {loading ? (
           <div className="space-y-4">
             <Skeleton className="h-6 w-full" />
-            <Skeleton className="h-6 w-2/3" />
-            <Skeleton className="h-4 w-1/3 mt-2" />
+            <Skeleton className="h-4 w-full mt-2" />
+            <Skeleton className="h-6 w-2/3 mt-4" />
+            <Skeleton className="h-4 w-1/3 mt-2 ml-auto" />
           </div>
         ) : verse ? (
           <blockquote className="border-l-4 border-primary pl-4">
             <p className="text-lg italic">"{verse.verse}"</p>
-            <cite className="mt-2 block text-right font-medium text-muted-foreground">
+            <p className="text-muted-foreground mt-2">"{verse.translation}"</p>
+            <cite className="mt-4 block text-right font-medium text-muted-foreground">
               - {verse.source}
             </cite>
           </blockquote>
