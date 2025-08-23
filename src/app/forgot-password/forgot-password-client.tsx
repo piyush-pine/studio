@@ -2,8 +2,7 @@
 'use client';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useRouter } from 'next/navigation';
-import { useAuth, loginSchema, type LoginInput } from '@/hooks/use-auth';
+import { useAuth, forgotPasswordSchema, type ForgotPasswordInput } from '@/hooks/use-auth';
 import { Button } from '@/components/ui/button';
 import {
   Card,
@@ -24,31 +23,29 @@ import { Input } from '@/components/ui/input';
 import { useToast } from '@/hooks/use-toast';
 import Link from 'next/link';
 
-export default function LoginClient() {
-  const { login } = useAuth();
-  const router = useRouter();
+export default function ForgotPasswordClient() {
+  const { resetPassword } = useAuth();
   const { toast } = useToast();
 
-  const form = useForm<LoginInput>({
-    resolver: zodResolver(loginSchema),
+  const form = useForm<ForgotPasswordInput>({
+    resolver: zodResolver(forgotPasswordSchema),
     defaultValues: {
       email: '',
-      password: '',
     },
   });
 
-  const onSubmit = async (data: LoginInput) => {
+  const onSubmit = async (data: ForgotPasswordInput) => {
     try {
-      await login(data);
-      router.push('/');
+      await resetPassword(data);
       toast({
-        title: 'Logged In',
-        description: 'You have successfully logged in.',
+        title: 'Password Reset Email Sent',
+        description: 'Please check your inbox for instructions to reset your password.',
       });
+      form.reset();
     } catch (error: any) {
         toast({
             variant: "destructive",
-            title: 'Login Failed',
+            title: 'Request Failed',
             description: error.message,
         });
     }
@@ -57,8 +54,8 @@ export default function LoginClient() {
   return (
     <Card className="w-full max-w-md">
       <CardHeader>
-        <CardTitle className="font-headline">Login</CardTitle>
-        <CardDescription>Enter your credentials to access your account.</CardDescription>
+        <CardTitle className="font-headline">Reset Password</CardTitle>
+        <CardDescription>Enter the email address associated with your account.</CardDescription>
       </CardHeader>
       <CardContent>
         <Form {...form}>
@@ -76,33 +73,15 @@ export default function LoginClient() {
                 </FormItem>
               )}
             />
-            <FormField
-              control={form.control}
-              name="password"
-              render={({ field }) => (
-                <FormItem>
-                  <div className="flex justify-between items-center">
-                    <FormLabel>Password</FormLabel>
-                     <Link href="/forgot-password" passHref>
-                        <Button variant="link" className="px-0 text-xs h-auto">Forgot Password?</Button>
-                     </Link>
-                  </div>
-                  <FormControl>
-                    <Input type="password" placeholder="******" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
             <Button type="submit" className="w-full" disabled={form.formState.isSubmitting}>
-              {form.formState.isSubmitting ? 'Logging in...' : 'Login'}
+              {form.formState.isSubmitting ? 'Sending...' : 'Send Reset Link'}
             </Button>
           </form>
         </Form>
          <p className="text-center text-sm text-muted-foreground mt-4">
-            Don't have an account?{' '}
-            <Link href="/signup" className="text-primary hover:underline">
-                Sign Up
+            Remember your password?{' '}
+            <Link href="/login" className="text-primary hover:underline">
+                Login
             </Link>
         </p>
       </CardContent>

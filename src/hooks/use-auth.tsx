@@ -1,3 +1,4 @@
+
 'use client';
 
 import {
@@ -11,6 +12,7 @@ import {
   onAuthStateChanged,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  sendPasswordResetEmail,
   signOut,
   type User,
 } from 'firebase/auth';
@@ -27,8 +29,14 @@ export const signupSchema = z.object({
     password: z.string().min(6, 'Password must be at least 6 characters'),
 });
 
+export const forgotPasswordSchema = z.object({
+    email: z.string().email({ message: 'Please enter a valid email address.' }),
+});
+
 export type LoginInput = z.infer<typeof loginSchema>;
 export type SignupInput = z.infer<typeof signupSchema>;
+export type ForgotPasswordInput = z.infer<typeof forgotPasswordSchema>;
+
 
 // Hardcoded admin email for simplicity
 export const ADMIN_EMAIL = 'admin@dharmatrust.com';
@@ -39,6 +47,7 @@ interface AuthContextType {
   signup: (values: SignupInput) => Promise<any>;
   login: (values: LoginInput) => Promise<any>;
   logout: () => Promise<void>;
+  resetPassword: (values: ForgotPasswordInput) => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -67,9 +76,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     return signOut(auth);
   };
 
+  const resetPassword = (values: ForgotPasswordInput) => {
+    return sendPasswordResetEmail(auth, values.email);
+  };
+
 
   return (
-    <AuthContext.Provider value={{ user, loading, signup, login, logout }}>
+    <AuthContext.Provider value={{ user, loading, signup, login, logout, resetPassword }}>
       {children}
     </AuthContext.Provider>
   );
