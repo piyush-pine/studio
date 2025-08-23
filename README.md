@@ -22,29 +22,41 @@ This command reads the `package.json` file and installs all the required librari
 
 ### 2. Set Up Environment Variables
 
-The project connects to Firebase services. You will need to provide your own Firebase project configuration.
+The project connects to Firebase services and Genkit AI. You will need to provide your own configuration keys.
 
-1. Rename the `.env.local.example` file to `.env.local`.
-2. Open the `.env.local` file and fill in the configuration values from your Firebase project's web app settings.
+1.  Create a new file in the root of your project directory and name it `.env`.
+2.  Open the `.env` file and add the following content, replacing the placeholder values with the credentials you copied from your Firebase project settings.
 
-_Note: The `dev` script for Genkit also uses these variables._
+```
+# Firebase
+NEXT_PUBLIC_FIREBASE_API_KEY="your-api-key"
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN="your-auth-domain"
+NEXT_PUBLIC_FIREBASE_PROJECT_ID="your-project-id"
+NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET="your-storage-bucket"
+NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID="your-messaging-sender-id"
+NEXT_PUBLIC_FIREBASE_APP_ID="your-app-id"
+
+# Genkit - using the same key as Firebase for simplicity
+# In a production app, you might use a more restrictive key for Genkit.
+GEMINI_API_KEY="your-api-key"
+```
 
 ### 3. Run the Development Server
 
-Once the installation is complete, you can start the local development server:
+Once the installation and environment variables are set up, you can start the local development server:
 
 ```bash
 npm run dev
 ```
 
-This will start the Next.js application in development mode with Turbopack. Open [http://localhost:9002](http://localhost:9002) with your browser to see the result.
+This will start the Next.js application. Open [http://localhost:9002](http://localhost:9002) with your browser to see the result.
 
 ### 4. Run the Genkit AI Flows
 
-The AI features of this application are powered by Genkit. To run the Genkit flows locally (which is necessary for the AI features to work), open a **separate terminal** and run:
+The AI features of this application are powered by Genkit. For the AI features to work, you must run the Genkit flows locally. Open a **new, separate terminal** (keep the other one running) and run:
 
 ```bash
 npm run genkit:watch
 ```
 
-This will start the Genkit development server, which will watch for changes in your flow files.
+This will start the Genkit development server, which will watch for changes in your flow files and make them available to your Next.js application.
