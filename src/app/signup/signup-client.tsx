@@ -1,3 +1,4 @@
+
 'use client';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -22,9 +23,11 @@ import {
 import { Input } from '@/components/ui/input';
 import { useToast } from '@/hooks/use-toast';
 import Link from 'next/link';
+import { GoogleIcon } from '@/components/icons/google';
+import { Separator } from '@/components/ui/separator';
 
 export default function SignupClient() {
-  const { signup } = useAuth();
+  const { signup, signInWithGoogle } = useAuth();
   const router = useRouter();
   const { toast } = useToast();
 
@@ -52,6 +55,23 @@ export default function SignupClient() {
         });
     }
   };
+  
+   const handleGoogleSignIn = async () => {
+    try {
+        await signInWithGoogle();
+        router.push('/');
+        toast({
+            title: 'Account Created with Google',
+            description: 'You have successfully signed up and logged in.',
+        });
+    } catch (error: any) {
+        toast({
+            variant: "destructive",
+            title: 'Google Sign-In Failed',
+            description: error.message,
+        });
+    }
+  }
 
   return (
     <Card className="w-full max-w-md">
@@ -93,6 +113,14 @@ export default function SignupClient() {
             </Button>
           </form>
         </Form>
+        <div className="relative my-4">
+          <Separator />
+          <span className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 bg-card px-2 text-sm text-muted-foreground">OR</span>
+        </div>
+        <Button variant="outline" className="w-full" onClick={handleGoogleSignIn}>
+            <GoogleIcon className="mr-2 h-5 w-5" />
+            Sign up with Google
+        </Button>
         <p className="text-center text-sm text-muted-foreground mt-4">
             Already have an account?{' '}
             <Link href="/login" className="text-primary hover:underline">

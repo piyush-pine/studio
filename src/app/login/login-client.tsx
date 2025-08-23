@@ -23,9 +23,11 @@ import {
 import { Input } from '@/components/ui/input';
 import { useToast } from '@/hooks/use-toast';
 import Link from 'next/link';
+import { GoogleIcon } from '@/components/icons/google';
+import { Separator } from '@/components/ui/separator';
 
 export default function LoginClient() {
-  const { login } = useAuth();
+  const { login, signInWithGoogle } = useAuth();
   const router = useRouter();
   const { toast } = useToast();
 
@@ -53,6 +55,23 @@ export default function LoginClient() {
         });
     }
   };
+  
+  const handleGoogleSignIn = async () => {
+    try {
+        await signInWithGoogle();
+        router.push('/');
+        toast({
+            title: 'Logged In with Google',
+            description: 'You have successfully logged in.',
+        });
+    } catch (error: any) {
+        toast({
+            variant: "destructive",
+            title: 'Google Sign-In Failed',
+            description: error.message,
+        });
+    }
+  }
 
   return (
     <Card className="w-full max-w-md">
@@ -99,6 +118,14 @@ export default function LoginClient() {
             </Button>
           </form>
         </Form>
+        <div className="relative my-4">
+          <Separator />
+          <span className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 bg-card px-2 text-sm text-muted-foreground">OR</span>
+        </div>
+        <Button variant="outline" className="w-full" onClick={handleGoogleSignIn}>
+          <GoogleIcon className="mr-2 h-5 w-5" />
+          Sign in with Google
+        </Button>
          <p className="text-center text-sm text-muted-foreground mt-4">
             Don't have an account?{' '}
             <Link href="/signup" className="text-primary hover:underline">
