@@ -1,6 +1,6 @@
-# Dharma Treasury - A Firebase Studio Project
+# Dharma Treasury 
 
-This is a Next.js starter project built in Firebase Studio. It features a modern portal for temple donations and exploring Vedic knowledge, powered by generative AI.
+This is a Next.js starter project built by pineapple. It features a modern portal for temple donations and exploring Vedic knowledge, powered by generative AI.
 
 ## Getting Started
 
