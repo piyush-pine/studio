@@ -56,30 +56,32 @@ This will start the Next.js application. Open [http://localhost:9002](http://loc
 The AI features of this application are powered by Genkit. For the AI features to work, you must run the Genkit flows locally. Open a **new, separate terminal** (keep the other one running) and run:
 
 ```bash
-## Project Screenshots
 
-### Donation Form
-![Donation Form](./Projects%20Screenshot/DonationForm.png)
-
-### Donation Report
-![Donation Report](./Projects%20Screenshot/DonationReport.png)
-
-### Donation Successful
-![Donation Successful](./Projects%20Screenshot/DonationSuccessful.png)
-
-### Superadmin Dashboard
-![Superadmin Dashboard](./Projects%20Screenshot/SuperadminDashboad.png)
-
-### User Profile Dashboard
-![User Profile Dashboard](./Projects%20Screenshot/UsereprofileDashboad.png)
-
-### Vedic Library
-![Vedic Library](./Projects%20Screenshot/VedicLibrary.png)
-
-### Wall of Devotion
-![Wall of Devotion](./Projects%20Screenshot/WallofDevotion.png)
 
 npm run genkit:watch
 ```
+## Project Screenshots
+
+### Donation Form
+![Donation Form](https://raw.githubusercontent.com/piyush-pine/studio/main/Projects%20Screenshot/DonationForm.png)
+
+### Donation Report
+![Donation Report](https://raw.githubusercontent.com/piyush-pine/studio/main/Projects%20Screenshot/DonationReport.png)
+
+### Donation Successful
+![Donation Successful](https://raw.githubusercontent.com/piyush-pine/studio/main/Projects%20Screenshot/DonationSuccessful.png)
+
+### Superadmin Dashboard
+![Superadmin Dashboard](https://raw.githubusercontent.com/piyush-pine/studio/main/Projects%20Screenshot/SuperadminDashboad.png)
+
+### User Profile Dashboard
+![User Profile Dashboard](https://raw.githubusercontent.com/piyush-pine/studio/main/Projects%20Screenshot/UsereprofileDashboad.png)
+
+### Vedic Library
+![Vedic Library](https://raw.githubusercontent.com/piyush-pine/studio/main/Projects%20Screenshot/VedicLibrary.png)
+
+### Wall of Devotion
+![Wall of Devotion](https://raw.githubusercontent.com/piyush-pine/studio/main/Projects%20Screenshot/WallofDevotion.png)
+
 
 This will start the Genkit development server, which will watch for changes in your flow files and make them available to your Next.js application.
