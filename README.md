@@ -138,14 +138,3 @@ Contributions are welcome! If you would like to contribute, please fork this rep
 Distributed under the MIT License. See `LICENSE` for more information.
 
 ***
-
-If you want, I can provide this as a markdown file for download or help with any further customization!
-
-[1](https://github.com/othneildrew/Best-README-Template)
-[2](https://github.com/sahat/hackathon-starter/blob/master/README.md)
-[3](https://dev.to/sumonta056/github-readme-template-for-personal-projects-3lka)
-[4](https://bulldogjob.com/readme/how-to-write-a-good-readme-for-your-github-project)
-[5](https://dbader.org/blog/write-a-great-readme-for-your-github-project)
-[6](https://dev.to/zand/a-comprehensive-and-user-friendly-project-readmemd-template-2ei8)
-[7](https://www.reddit.com/r/programming/comments/l0mgcy/github_readme_templates_creating_a_good_readme_is/)
-[8](https://devpost.com/software/readme-template)
