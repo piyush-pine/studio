@@ -86,9 +86,20 @@ npm run genkit:watch
 
 This will start the Genkit development server, which will watch for changes in your flow files and make them available to your Next.js application.
 
-### Special Thanks To
+## Team Members
 
-- [aadityathakre](https://github.com/aadityathakre)
-- [Sonichetan27](https://github.com/Sonichetan27)
-- [Ayush-Daharwal](https://github.com/Ayush-Daharwal)
+This project was built as part of a hackathon. Huge thanks to the amazing team who contributed their skills and effort:
 
+## Team Members
+
+This project was built as part of a hackathon. Huge thanks to the amazing team who contributed their skills and effort:
+
+- [Piyush Pine](https://github.com/piyush-pine) – Project Lead & Developer (Blockchain Part)
+- [aadityathakre](https://github.com/aadityathakre) – Developer & Collaborator (Database + Backend)
+- [Sonichetan27](https://github.com/Sonichetan27) – Developer & Collaborator (Frontend Design Part)
+- [Ayush-Daharwal](https://github.com/Ayush-Daharwal) – Developer & Collaborator (Database + Backend)
+
+Your contributions made this project possible! 🚀
+
+
+Your contributions made this project possible! 🚀
